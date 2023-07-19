@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using System;
 using UserApp.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -12,8 +12,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<UserDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+var connectionString = builder.Configuration.GetConnectionString("db");
+builder.Services.AddDbContext<UserDbContext>(option => option.UseSqlServer(connectionString));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();//migration'da oluşabilecek hataları döndürür
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("allow", builder =>//allow = her şeye izin ver
+    {
+        builder.AllowAnyHeader();//her request header'a izin ver
+        builder.AllowAnyMethod();
+        builder.AllowAnyOrigin();//http ile https farklı origin'ler.bunlara izin ver dedik
+    });
+});
 
 var app = builder.Build();
 

@@ -27,7 +27,7 @@ namespace UserApp.Services
             await userRepository.DeleteUser(id);
         }
 
-        public async Task<List<User>> GetAllUser()
+        public async Task<IList<User>> GetAllUser()
         {
             return await userRepository.GetAllUsers();
         }

@@ -17,9 +17,9 @@ namespace UserApp.Infrastructure.Repository
         {
             _dbContext = dbContext;
         }
-        public async Task<List<User>> GetAllUsers()
+        public async Task<IList<User>> GetAllUsers()
         {
-            return await _dbContext.Users.ToListAsync();
+            return await _dbContext.Users.AsNoTracking().ToListAsync();
         }
         public async Task<User> GetUserById(int id)
         {

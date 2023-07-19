@@ -6,9 +6,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="C:\Users\yalci\Desktop\UserApp\src\Application\UserApp.Services\Mappings\MapProfile.cs" Link="Mappings\MapProfile.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
@@ -16,11 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Infrastructure\UserApp.Infrastructure\UserApp.Infrastructure.csproj" />
+    <Folder Include="Mappings\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mappings\" />
+    <ProjectReference Include="..\..\Infrastructure\UserApp.Infrastructure\UserApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\UserApp.DTO\UserApp.DTO.csproj" />
   </ItemGroup>
 
 </Project>

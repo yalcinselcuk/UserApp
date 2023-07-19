@@ -9,7 +9,7 @@ namespace UserApp.Infrastructure.Repository
 {
     public interface IUserRepository
     {
-        Task<List<User>> GetAllUsers();
+        Task<IList<User>> GetAllUsers();
         Task<User> GetUserById(int id);
         Task AddUser(User user);
         Task UpdateUser(User user);

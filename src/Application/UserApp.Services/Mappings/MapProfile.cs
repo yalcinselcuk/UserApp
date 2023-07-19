@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using UserApp.DTO.Requests;
+using UserApp.DTO.Responses;
+using UserApp.Entities;
 
 namespace UserApp.Services.Mappings
 {
@@ -11,7 +10,8 @@ namespace UserApp.Services.Mappings
     {
         public MapProfile() 
         {
-            CreateMap
+            CreateMap<User, UserResponse>();
+            CreateMap<CreateNewUserRequest, User>();
         }
     }
 }

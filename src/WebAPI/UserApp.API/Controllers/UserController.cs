@@ -9,24 +9,24 @@ namespace UserApp.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserService userService;
+        private readonly IUserService _userService;
 
         public UserController(IUserService userService)
         {
-            this.userService = userService;
+            this._userService = userService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<User>>> GetAllUsers()
+        public IActionResult GetAllUsers()
         {
-            var users = await userService.GetAllUser();
+            var users = _userService.GetAllUser();
             return Ok(users);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUserById(int id)
         {
-            var user = await userService.GetUserById(id);
+            var user = await _userService.GetUserById(id);
             if (user == null)
                 return NotFound();
 
@@ -36,7 +36,7 @@ namespace UserApp.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddUser(User user)
         {
-            await userService.AddUser(user);
+            await _userService.AddUser(user);
             return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
         }
 
@@ -46,14 +46,14 @@ namespace UserApp.API.Controllers
             if (id != user.Id)
                 return BadRequest();
 
-            await userService.UpdateUser(user);
+            await _userService.UpdateUser(user);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            await userService.DeleteUser(id);
+            await _userService.DeleteUser(id);
             return NoContent();
         }
     }
